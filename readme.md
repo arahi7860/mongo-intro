@@ -117,8 +117,28 @@ as a primary key.
 Great, now that we have a high level understanding of what Mongo is and what purpose it serves, let's look at how to use it!
 
 ## Installation
-- [Mac OS X](https://docs.mongodb.org/getting-started/shell/tutorial/install-mongodb-on-os-x/)
-- [Linux](https://docs.mongodb.org/manual/tutorial/install-mongodb-on-ubuntu/)
+- Mac OS X
+    1. Install mongodb with brew
+
+        ```bash
+        brew install mongodb
+        ```
+
+    2. Create the folder mongo will be using to store your databases
+
+        ```bash
+        sudo mkdir -p /data/db
+        ```
+
+    3. Change permission so your user account owns this folder you just created
+
+        ```bash
+        sudo chown -R $(whoami) /data/db
+        ```
+
+    > Type these commands exactly as displayed, you don't need to substitute anything.
+
+- [Linux Instructions on the mongodb website](https://docs.mongodb.org/manual/tutorial/install-mongodb-on-ubuntu/)
 
 ### Start mongo:
 
