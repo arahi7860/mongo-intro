@@ -88,7 +88,6 @@ TPS: What do you see?
 ## Documents
 
 ### A record in MongoDB is a document
-![mongo-document](https://docs.mongodb.com/manual/_images/crud-annotated-document.png)
 
 - a data structure composed of field(key) and value pairs.
   - similar to JSON objects.
@@ -99,8 +98,6 @@ TPS: What do you see?
 ## Collections
 
 MongoDB stores documents in collections.
-
-![mongo-collections](https://docs.mongodb.com/manual/_images/crud-annotated-collection.png)
 
 - Collections are analogous to tables in relational databases.
 - does **NOT** require its documents to have the same schema.
