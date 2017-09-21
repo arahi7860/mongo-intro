@@ -114,6 +114,33 @@ as a primary key.
 Great, now that we have a high level understanding of what Mongo is and what purpose it serves, let's look at how to use it!
 
 ## Installation
+
+### Don't Do This Unless You Don't Already Have MongoDB installed
+
+Check with `$ mongo --version`. If you already have it installed you should see output like this...
+
+```sh
+$ mongo --version
+
+git version: 3287gd3278df73fd783fd781f23d8f187
+OpenSSL version: OpenSSL 1.0.2l  25 May 2017
+allocator: system
+modules: none
+build environment:
+    distarch: x86_64
+    target_arch: x86_64
+```
+
+If you already have mongo installed, skip to the **Mongo Shell** section.
+
+Otherwise, follow the instructions below.
+
+### Installation Instructions
+
+#### Proceed only if you don't have installed! Consult the previous section.
+
+If you already have mongo installed, skip to the **Mongo Shell** section.
+
 - Mac OS X
     1. Install mongodb with brew
 
@@ -155,6 +182,8 @@ $ brew info mongo
 ```
 
 ## Mongo shell
+
+
 
 ### Start the shell
 
