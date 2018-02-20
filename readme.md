@@ -4,7 +4,7 @@
 
 ## Learning Objectives
 
-- Compare and contrast relational to document based (NoSql) databases
+- Introduce databases, specifically non-relational databases
 - Setup local MongoDB server
 - Define what a document is in the context of MongoDB
 - CRUD documents using Mongo CLI
@@ -12,27 +12,61 @@
 
 ## Framing
 
-Well, we've come full circle ... again. What we're learning today isn't
-fundamentally that different from what we know. We're going to learn a
-different way to store information. This time, via a document-based, non-relational way.
+What's the main problem with our programs right now in terms of user
+experience?
 
-We've learned a considerable amount of information about relational databases with Postgres. We've seen that schema's in SQL(relational DB's) are fairly rigid. Adding columns can be taxing(migrations). Also if we delete a row in a table that is being used as a foreign key in another table, we must delete all the rows associated with that foreign key before we can delete the parent object. With SQL, we can also join on foreign keys for relational tables in order to query our database. One of the negatives about these join queries, is that they can get really expensive and therefore slow down our app.
+When we quit them, any data / progress is lost! Right now, we can only store
+information in memory, which is wiped when we quit out of a program. We
+need a way to fix this.
 
-**When dealing with less complex associations, non relational databases can be more
-effective**.  Mongo provides a more flexible, scalable solution for less complex
-domain models.
+Enter databases...
 
-> This is not to say that Mongo is a better solution than Postgres or other
-SQL libraries, but an alternative solution.
+## Databases (5 minutes / 0:05)
+
+A database is a tool for storing data. There are many ways to store data on a computer (e.g., writing to a text file, a binary file). Databases, however, offer a number of advantages...
+
+**Permanence**: Once we write data to our database, we can be pretty sure it
+won't be lost (unless the server catches on fire).
+
+**Speed**: Databases are generally optimized to be fast at retrieving and updating information. Literally, DBs can be 100,000x faster than reading from a file.
+
+**Consistency**: Databases can enforce rules regarding consistency of data, especially when handling simultaneous requests to update information.
+
+**Scalability**: Databases can handle lots of requests per second, and many DBs have ways to scale to massive loads by replicating / syncing information across multiple DBs.
+
+**Querying**: DBs make it easy to search, sort, filter and combine related data using a **Query Language**.
+
+One type of database is the **relational** database, in which data is organized by columns and rows, much like an Excel spreadsheet.
+
+**NOTE:** 
+
+- Some students may have used or heard of SQL.
+- SQL is a database language used specifically for relational databases.
+- We will get into this later in the course.
+
+**NOTE END**
+
+Today, we are going to explore non-relational databases.
 
 MongoDB is an open-source **document database** that provides:
+
 - High Performance
 - High Availability
 - Automatic Scaling
 
-In a nutshell, you should use Mongo if you are working with a flexible data model, that involves similar, but different objects.
+**When dealing with less complex associations, non-relational databases can be more
+effective**.  Mongo provides a more flexible, scalable solution for storing data.
 
-## [Document Database](https://docs.mongodb.com/manual/introduction/)?
+### Terminology
+
+While this is a bit technical, it's worth clarifying some terminology...
+
+* **Database**: The actual set of data being stored. We may create multiple databases on our computer, often one for each application.
+
+* **Database Management System**: The software that lets a user interact (query) the data in a database. Examples are MongoDB, PostgreSQL, MySQL, etc.
+* **Database CLI**: A tool offered by most DBMSs that allows us to query the database from the command line. For PostgreSQL, we'll use `mongo`.
+
+## Document Database
 
 ### A basic example of a `Person` document:
 
@@ -45,13 +79,20 @@ In a nutshell, you should use Mongo if you are working with a flexible data mode
 }
 ```
 ---
-TPS: What do you see?
+TPS: What do you see in the data above?
 
 ### A Document
 
-- json
-- different data types
-- even arrays
+**A record in MongoDB is a document.**
+
+- a data structure composed of field (key) and value pairs
+  - similar to JSON objects ([JavaScript Object Notation](https://www.mongodb.com/json-and-bson) is a JS object converted into text to be parsed easily by machines)
+  - stored as BSON [(binary-encoded JSON)](http://bsonspec.org/ )
+- a document can support all data types - numbers, strings, booleans, even arrays
+- fields may include other documents and arrays of documents
+- a document is analogous to rows in a table
+
+[Documentation Here] (https://docs.mongodb.com/manual/introduction/)
 
 ### More complicated example of a `Restaurant` document:
 
@@ -83,26 +124,13 @@ TPS: What do you see?
 }
 ```
 
-[Documentation](https://www.mongodb.org)
-
-## Documents
-
-### A record in MongoDB is a document
-
-- a data structure composed of field(key) and value pairs.
-  - similar to JSON objects.
-  - stored as BJSON
-- fields may include other documents, arrays, and arrays of documents.
-- analogous to rows in a table
-
 ## Collections
 
 MongoDB stores documents in collections.
 
-- Collections are analogous to tables in relational databases.
-- does **NOT** require its documents to have the same schema.
-- documents stored in a collection must have a unique `_id` field that acts
-as a primary key.
+- collections are analogous to tables in relational databases
+- does **NOT** require its documents to have the same schema
+- documents stored in a collection must have a unique `_id` field that acts as a primary key
 
 ###  MongoDB & NoSQL vs. SQL and Relational Databases
 
@@ -166,6 +194,8 @@ If you already have mongo installed, skip to the **Mongo Shell** section.
 
 ### Start mongo:
 
+In a new tab in Terminal:
+
 ```
 $ mongod
 ```
@@ -186,6 +216,8 @@ $ brew info mongo
 
 
 ### Start the shell
+
+Back in your original Terminal tab:
 
 ```
 $ mongo
@@ -212,9 +244,9 @@ Based on what you see in the help menu:
 - What jumps out as important?
 - What might be useful for debugging?
 
----
+<details>
+<summary> **Some things that jump out:** </summary>
 
-### What jumped out to me:
 - `show dbs`: show database names
 - `show collections`:  show collections in current database
 - `use <db_name>`: set current database
@@ -224,6 +256,9 @@ Also:
 
 - `<tab>` key completion
 - `<up-arrow>` and the `<down-arrow>` for history.
+</details>
+
+---
 
 ### CLI: Creating a Database
 
@@ -237,20 +272,21 @@ In order to create/connect to a new database, we have to tell mongo to `use` a s
 > **Note**: `use` will create the database it received as an argument if not already initialized and connect to it
 
 Verify:
+
 ```
 > db
 restaurant_db
 ```
 > **Note**: the `db` variable is provided by mongo and will point to the currently connected database
 
-Common Gotcha, what happens when we run:
+Common Gotcha - what happens when we run:
 
 ```
 $ show dbs
 ```
 
-> **Note** we don't see `restaurant_db` listed. It isn't until we add a document to
-our database that our  db will show up in `show dbs`
+> **Note**: we don't see `restaurant_db` listed. It isn't until we add a document to
+our database that our db will show up in `show dbs`.
 
 ## CLI: Create a record
 
@@ -296,9 +332,11 @@ Returns documents with the following fields:
 
 **Q**. What is surprising/unexpected?
 
-- where did `restaurants` come from?
+- Where did `restaurants` come from?
 - `_id`?
-- [ObjectId](https://docs.mongodb.org/manual/reference/object-id/)
+
+
+> Note: Documentation on [ObjectId](https://docs.mongodb.org/manual/reference/object-id/)
 
 ## Review `insert`
 ```js
@@ -331,18 +369,16 @@ Using the Mongo Shell CLI, add at least 4 new restaurant documents to your `rest
 **ProTip**: I recommend you construct your statements in your editor and copy /
 paste. It will help you now & later.
 
----
-
 ## Break
-
----
 
 > Prompt: Did anyone insert multiple at one time?
 
 Let's recreate the steps together:
 
-**Q**. How can we tell which database we are connected to currently?
-> `db`
+<details>
+	<summary>How can we tell which database we are connected to currently?</summary>
+	`db`
+</details>
 
 1. Create DB
 2. Use the appropriate DB
@@ -397,19 +433,17 @@ db.restaurants.insert([
 
 ## [Primary key](http://docs.mongodb.org/manual/reference/glossary/#term-primary-key)
 
-- A record’s unique immutable identifier.
-- In relational databases: usually *id* field, typically an *Integer*
-- In MongoDB: the *_id* field, usually a *[BSON](http://docs.mongodb.org/manual/reference/glossary/#term-bson) [ObjectId](http://docs.mongodb.org/manual/reference/glossary/#term-objectid)*.
+- A record’s unique immutable identifier generated upon creation of a new instance.
+- In relational databases, the primary key is usually an *id* field, the value of which is typically an *Integer*.
+- In MongoDB, the *_id* field is usually a *[BSON](http://docs.mongodb.org/manual/reference/glossary/#term-bson) [ObjectId](http://docs.mongodb.org/manual/reference/glossary/#term-objectid)*.
 
 ## CLI: QUERY for Records
 
 Breaking down the anatomy of a typical query with Mongo:
 
-   collection + operation + modification = results
+    collection + operation + modification = results
 
-![mongo-queries](https://docs.mongodb.com/manual/_images/crud-query-stages.png)
-
-In order to Find all restaurants:
+In order to find all restaurants:
 ```js
 > db.restaurants.find()
 ```
@@ -446,7 +480,7 @@ is what values you'd like to set, and third is any additional options
 
 Take time to think about and execute the appropriate commands so that you:
 
-- Update all restaurants to have a new key-value pair `{state: "DC"}`
+- Update all restaurants to have a new key-value pair `{state: 'DC'}`
 - Add a property of `rating` to at least 2 documents and give it a numerical value between 1-5
 - Change the street `address` of a specific restaurant
 
