@@ -544,7 +544,7 @@ Verify:
 ### High Performance
 
 - Embedded documents and arrays reduce need for expensive joins (reduces I/O).
-- Indexes support faster queries and can include keys from embedded documents and arrays.
+- Indexes support faster queries and can include keys from embedded documents and arrays. (More info on MongoDB indexing [here](https://dev.to/akazia_it/introduction-to-mongodb-indexing).)
 
 ### High Availability
 
@@ -567,9 +567,9 @@ throughput deployments.
 
 ---
 
-## Bonus Exercise
+## Homework
 
-[Build a CLI Mongo App w/ Node](https://github.com/ga-wdi-exercises/mongo-cli/)
+[Build a CLI Mongo App w/ Node](https://git.generalassemb.ly/ga-wdi-exercises/mongo-cli)
 
 ## Helpful References
 
