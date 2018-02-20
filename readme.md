@@ -21,7 +21,7 @@ need a way to fix this.
 
 Enter databases...
 
-## Databases (5 minutes / 0:05)
+## Databases (15 minutes / 0:15)
 
 A database is a tool for storing data. There are many ways to store data on a computer (e.g., writing to a text file, a binary file). Databases, however, offer a number of advantages...
 
@@ -66,7 +66,7 @@ While this is a bit technical, it's worth clarifying some terminology...
 * **Database Management System**: The software that lets a user interact (query) the data in a database. Examples are MongoDB, PostgreSQL, MySQL, etc.
 * **Database CLI**: A tool offered by most DBMSs that allows us to query the database from the command line. For PostgreSQL, we'll use `mongo`.
 
-## Document Database
+## Document Database (10 min / 0:25)
 
 ### A basic example of a `Person` document:
 
@@ -124,7 +124,7 @@ TPS: What do you see in the data above?
 }
 ```
 
-## Collections
+## Collections (5 min / 0:30)
 
 MongoDB stores documents in collections.
 
@@ -141,7 +141,7 @@ MongoDB stores documents in collections.
 
 Great, now that we have a high level understanding of what Mongo is and what purpose it serves, let's look at how to use it!
 
-## Installation
+## Installation (10 min / 0:40)
 
 ### Don't Do This Unless You Don't Already Have MongoDB installed
 
@@ -211,7 +211,7 @@ You should see:
 $ brew info mongo
 ```
 
-## Mongo shell
+## Mongo shell (10 min / 0:50)
 
 
 
@@ -259,6 +259,8 @@ Also:
 </details>
 
 ---
+## Break (10 min / 1:00)
+---
 
 ### CLI: Creating a Database
 
@@ -288,7 +290,7 @@ $ show dbs
 > **Note**: we don't see `restaurant_db` listed. It isn't until we add a document to
 our database that our db will show up in `show dbs`.
 
-## CLI: Create a record
+## CLI: Create a record (15 min / 1:20)
 
 ### Insert
 
@@ -369,8 +371,6 @@ Using the Mongo Shell CLI, add at least 4 new restaurant documents to your `rest
 **ProTip**: I recommend you construct your statements in your editor and copy /
 paste. It will help you now & later.
 
-## Break
-
 > Prompt: Did anyone insert multiple at one time?
 
 Let's recreate the steps together:
@@ -431,13 +431,15 @@ db.restaurants.insert([
 > db.restaurants.count()
 ```
 
-## [Primary key](http://docs.mongodb.org/manual/reference/glossary/#term-primary-key)
+## [Primary key](http://docs.mongodb.org/manual/reference/glossary/#term-primary-key) (5 min / 1:25)
 
 - A record’s unique immutable identifier generated upon creation of a new instance.
 - In relational databases, the primary key is usually an *id* field, the value of which is typically an *Integer*.
 - In MongoDB, the *_id* field is usually a *[BSON](http://docs.mongodb.org/manual/reference/glossary/#term-bson) [ObjectId](http://docs.mongodb.org/manual/reference/glossary/#term-objectid)*.
 
-## CLI: QUERY for Records
+## Break (10 min / 1:35)
+
+## CLI: QUERY for Records (25 min / 2:00)
 
 Breaking down the anatomy of a typical query with Mongo:
 
@@ -476,7 +478,7 @@ http://docs.mongodb.org/manual/core/write-operations-introduction/
 > **Note**: the first key value pair is the condition on which to find the document you'd like to update, the second
 is what values you'd like to set, and third is any additional options
 
-### You do (10 min):
+### You do (15 min):
 
 Take time to think about and execute the appropriate commands so that you:
 
@@ -526,26 +528,23 @@ Verify:
 
 > We already did this! (The address 'object' / 'subdocument')
 
-## Closing: Review Mongo's Key Advantages
+## Closing: Review Mongo's Key Advantages (15 min / 2:15)
 
 - Usability
 - High Performance
 - High Availability
 - Automatic Scaling
-- No SQL :)
+- No SQL
 
 ### Usability
 
-- Documents (i.e. objects) correspond to native data types in many
-programming languages.
-- Schema-less, less need to manage migrations
-- Dynamic schema supports fluent polymorphism.
+- Documents (i.e. objects) correspond to native data types in many programming languages.
+- Schema-less: no need to manage migrations.
 
 ### High Performance
 
 - Embedded documents and arrays reduce need for expensive joins (reduces I/O).
-- Indexes support faster queries and can include keys from embedded documents
-and arrays.
+- Indexes support faster queries and can include keys from embedded documents and arrays.
 
 ### High Availability
 
@@ -565,13 +564,6 @@ redundancy and increasing data availability.
 throughput deployments.
 
 > Interested in learning more about [No SQL?](https://www.mongodb.com/nosql-explained)
-
-### TPS (5mins): Which database would you choose for?
-
- What database type would make sense for the following apps:
-- Blog: Posts have_many Comments
-- HR app: Companies have_many Managers have_many Employees
-- Gallery: Artists have_many Paintings
 
 ---
 
