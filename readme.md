@@ -64,7 +64,7 @@ While this is a bit technical, it's worth clarifying some terminology...
 * **Database**: The actual set of data being stored. We may create multiple databases on our computer, often one for each application.
 
 * **Database Management System**: The software that lets a user interact (query) the data in a database. Examples are MongoDB, PostgreSQL, MySQL, etc.
-* **Database CLI**: A tool offered by most DBMSs that allows us to query the database from the command line. For PostgreSQL, we'll use `mongo`.
+* **Database CLI**: A tool offered by most DBMSs that allows us to query the database from the command line. For MongoDB, we'll use `mongo`.
 
 ## Document Database (10 min / 0:25)
 
