@@ -38,14 +38,6 @@ won't be lost (unless the server catches on fire).
 
 One type of database is the **relational** database, in which data is organized by columns and rows, much like an Excel spreadsheet.
 
-**NOTE:** 
-
-- Some students may have used or heard of SQL.
-- SQL is a database language used specifically for relational databases.
-- We will get into this later in the course.
-
-**NOTE END**
-
 Today, we are going to explore non-relational databases.
 
 MongoDB is an open-source **document database** that provides:
@@ -245,7 +237,7 @@ Based on what you see in the help menu:
 - What might be useful for debugging?
 
 <details>
-<summary> **Some things that jump out:** </summary>
+<summary>Some things that jump out:</summary>
 
 - `show dbs`: show database names
 - `show collections`:  show collections in current database
