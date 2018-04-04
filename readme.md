@@ -1,6 +1,6 @@
 # MongoDB
 
-![Mongo-logo](http://www.screen-i.com/blog/wp-content/uploads/2015/07/mongodb-standard-logo-565.png)
+![logo](https://webassets.mongodb.com/_com_assets/cms/mongodb-logo-rgb-j6w271g1xn.jpg)
 
 ## Learning Objectives
 
@@ -561,7 +561,7 @@ throughput deployments.
 
 ## Homework
 
-[Build a CLI Mongo App w/ Node](https://git.generalassemb.ly/ga-wdi-exercises/mongo-cli)
+[Build a CLI Mongo App w/ Node](https://git.generalassemb.ly/dc-wdi-node-express/mongo-cli)
 
 ## Helpful References
 
