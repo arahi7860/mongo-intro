@@ -1,6 +1,6 @@
 # MongoDB
 
-![logo](https://webassets.mongodb.com/_com_assets/cms/mongodb-logo-rgb-j6w271g1xn.jpg)
+![logo](./images/mongodb-logo.jpg)
 
 ## Learning Objectives
 
@@ -12,10 +12,11 @@
 
 ## Framing
 
-What's the main problem with our programs right now in terms of user
-experience?
+Why use a database at all?
 
-When we quit them, any data / progress is lost! Right now, we can only store
+What's a major shortcoming of our applications right now, in terms of user experience?
+
+When we quit or reload the page, any data / progress is lost! Right now, we can only store
 information in memory, which is wiped when we quit out of a program. We
 need a way to fix this.
 
@@ -28,7 +29,7 @@ A database is a tool for storing data. There are many ways to store data on a co
 **Permanence**: Once we write data to our database, we can be pretty sure it
 won't be lost (unless the server catches on fire).
 
-**Speed**: Databases are generally optimized to be fast at retrieving and updating information. Literally, DBs can be 100,000x faster than reading from a file.
+**Speed**: Databases are generally optimized to be fast at retrieving and updating information. Literally, DBs can be 100,000x faster than reading from a file. This is especially important at scale.
 
 **Consistency**: Databases can enforce rules regarding consistency of data, especially when handling simultaneous requests to update information.
 
@@ -54,7 +55,6 @@ effective**.  Mongo provides a more flexible, scalable solution for storing data
 While this is a bit technical, it's worth clarifying some terminology...
 
 * **Database**: The actual set of data being stored. We may create multiple databases on our computer, often one for each application.
-
 * **Database Management System**: The software that lets a user interact (query) the data in a database. Examples are MongoDB, PostgreSQL, MySQL, etc.
 * **Database CLI**: A tool offered by most DBMSs that allows us to query the database from the command line. For MongoDB, we'll use `mongo`.
 
@@ -71,7 +71,7 @@ While this is a bit technical, it's worth clarifying some terminology...
 }
 ```
 ---
-TPS: What do you see in the data above?
+What do you see in the data above?
 
 ### A Document
 
@@ -124,18 +124,11 @@ MongoDB stores documents in collections.
 - does **NOT** require its documents to have the same schema
 - documents stored in a collection must have a unique `_id` field that acts as a primary key
 
-###  MongoDB & NoSQL vs. SQL and Relational Databases
-
-    A SQL  ___________            ...is like...           A Mongo  ____________
-![mongo-sql-compared](http://4.bp.blogspot.com/-edz2_QrFvCE/UnzBhKZE3FI/AAAAAAAAAEs/bTEsqnZFTXw/s1600/SQL-MongoDB+Correspondence.PNG)
-
----
-
 Great, now that we have a high level understanding of what Mongo is and what purpose it serves, let's look at how to use it!
 
-## Installation (10 min / 0:40)
+## Installation / Starting (10 min / 0:40)
 
-### Don't Do This Unless You Don't Already Have MongoDB installed
+### Don't Do This Unless mongoDB is not installed
 
 Check with `$ mongo --version`. If you already have it installed you should see output like this...
 
@@ -206,7 +199,6 @@ $ brew info mongo
 ## Mongo shell (10 min / 0:50)
 
 
-
 ### Start the shell
 
 Back in your original Terminal tab:
@@ -224,6 +216,8 @@ MongoDB shell version: 3.x.x
 connecting to: test
 >
 ```
+
+> The > is a good sign that you've entered the terminal.
 
 ### Help
 
@@ -313,7 +307,9 @@ use the `.insert()` to add the document inside the parentheses.
 restaurants
 ```
 
-Note: `restaurants` was saved as a collection
+`restaurants` was saved as a collection. A collection is really just a group of documents. If you want to explore all the things you can do with a collection, type `db.collection_name.help()`, or in this case: `db.restaurants.help()`
+
+Now type:
 
 ```js
 > db.restaurants.find()
@@ -369,7 +365,8 @@ Let's recreate the steps together:
 
 <details>
 	<summary>How can we tell which database we are connected to currently?</summary>
-	`db`
+
+	> `db`
 </details>
 
 1. Create DB
@@ -416,12 +413,14 @@ db.restaurants.insert([
     "address": {
       "street": "1700 N Moore St",
       "zipcode": 22209
-    },
-    "yelp": "http://www.yelp.com/biz/js-cookies-arlington" }
+    }
+  }
 ])
 
 > db.restaurants.count()
 ```
+
+> Note that there's no `yelp` key in the last record. Does that matter?
 
 ## [Primary key](http://docs.mongodb.org/manual/reference/glossary/#term-primary-key) (5 min / 1:25)
 
