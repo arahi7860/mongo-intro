@@ -557,10 +557,9 @@ throughput deployments.
 > Interested in learning more about [No SQL?](https://www.mongodb.com/nosql-explained)
 
 ---
-<!-- 
 ## Homework
 
-[Build a CLI Mongo App w/ Node](https://git.generalassemb.ly/dc-wdi-node-express/mongo-cli) -->
+[Build a CLI Mongo App w/ Node](https://git.generalassemb.ly/dc-wdi-node-express/mongo-cli)
 
 ## Helpful References
 
