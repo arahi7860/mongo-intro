@@ -37,7 +37,7 @@ won't be lost (unless the server catches on fire).
 
 **Querying**: DBs make it easy to search, sort, filter and combine related data using a **Query Language**.
 
-One type of database is the **relational** database, in which data is organized by columns and rows, much like an Excel spreadsheet.
+One type of database is the **relational** database, in which data is organized by columns and rows, much like an Excel spreadsheet. If you've ever heard of SQL, it's likely the most popular relational database ever.
 
 Today, we are going to explore non-relational databases.
 
@@ -48,7 +48,7 @@ MongoDB is an open-source **document database** that provides:
 - Automatic Scaling
 
 **When dealing with less complex associations, non-relational databases can be more
-effective**.  Mongo provides a more flexible, scalable solution for storing data.
+effective**. Mongo provides a more flexible, scalable solution for storing data.
 
 ### Terminology
 
@@ -56,7 +56,7 @@ While this is a bit technical, it's worth clarifying some terminology...
 
 * **Database**: The actual set of data being stored. We may create multiple databases on our computer, often one for each application.
 * **Database Management System**: The software that lets a user interact (query) the data in a database. Examples are MongoDB, PostgreSQL, MySQL, etc.
-* **Database CLI**: A tool offered by most DBMSs that allows us to query the database from the command line. For MongoDB, we'll use `mongo`.
+* **Database CLI**: A tool offered by most DBMSs that allows us to query the database from the command line. For MongoDB, we'll use `mongo`. We'll be mostly working in the CLI today.
 
 ## Document Database (10 min / 0:25)
 
@@ -122,7 +122,7 @@ MongoDB stores documents in collections.
 
 - collections are analogous to tables in relational databases
 - does **NOT** require its documents to have the same schema
-- documents stored in a collection must have a unique `_id` field that acts as a primary key
+- each document stored in a collection must have a unique `_id` field that acts as a primary key
 
 Great, now that we have a high level understanding of what Mongo is and what purpose it serves, let's look at how to use it!
 
@@ -130,16 +130,18 @@ Great, now that we have a high level understanding of what Mongo is and what pur
 
 ### Don't Do This Unless mongoDB is not installed
 
-Check with `$ mongo --version`. If you already have it installed you should see output like this...
+Check by running `mongo --version`. If you already have it installed you should see output like this...
 
 ```sh
 $ mongo --version
 
-git version: 3287gd3278df73fd783fd781f23d8f187
-OpenSSL version: OpenSSL 1.0.2l  25 May 2017
-allocator: system
+MongoDB shell version v3.6.6
+git version: 6405d65b1d6432e138b44c13085d0c2fe235d6bd
+OpenSSL version: OpenSSL 1.0.2n  7 Dec 2017
+allocator: tcmalloc
 modules: none
 build environment:
+    distmod: ubuntu1604
     distarch: x86_64
     target_arch: x86_64
 ```
@@ -221,6 +223,8 @@ connecting to: test
 
 ### Help
 
+Type `help` to get a list of available commands.
+
 ```
 > help
 ```
@@ -233,6 +237,7 @@ Based on what you see in the help menu:
 <details>
 <summary>Some things that jump out:</summary>
 
+- `db.help()` : help with database commands
 - `show dbs`: show database names
 - `show collections`:  show collections in current database
 - `use <db_name>`: set current database
@@ -301,9 +306,12 @@ our database that our db will show up in `show dbs`.
 `.restaurants` is then referring to a collection in our `restaurant_db`. We
 use the `.insert()` to add the document inside the parentheses.
 
+> `restaurants` doesn't exist at first, but that's okay. It gets created automatically the first time we add a document to it.
+
 ### Verify the insert
 ```bash
 > show collections
+
 restaurants
 ```
 
@@ -346,11 +354,11 @@ MongoDB will create the collection for you.
 ## Dropping a Database
 
 ```bash
-> use random_db
+> use database_to_be_dropped
 > db.dropDatabase()
 ```
 
-Drops the **current** database.
+Drops the **current** database. Go ahead and drop your database now.
 
 ### Exercise (5 minutes): Add a few more restaurants.
 
@@ -403,7 +411,7 @@ db.restaurants.insert([
   {
     "name": "Captain Cookie and the Milk Man",
     "address": {
-      "street": "Dupont Circle",
+      "street": "Foggy Bottom",
       "zipcode": 20036
     },
     "yelp": "http://www.yelp.com/biz/captain-cookie-and-the-milk-man-washington-5"
@@ -470,6 +478,8 @@ http://docs.mongodb.org/manual/core/write-operations-introduction/
 is what values you'd like to set, and third is any additional options
 
 ### You do (15 min):
+
+> Write all these out in your code editor before you run them in the command line.
 
 Take time to think about and execute the appropriate commands so that you:
 
@@ -557,10 +567,11 @@ throughput deployments.
 > Interested in learning more about [No SQL?](https://www.mongodb.com/nosql-explained)
 
 ---
-## Homework
+<!-- ## Homework
 
 [Build a CLI Mongo App w/ Node](https://git.generalassemb.ly/dc-wdi-node-express/mongo-cli)
-
+ -->
+ 
 ## Helpful References
 
 - [Mongo to SQL Mapping Chart](http://docs.mongodb.org/manual/reference/sql-comparison/)
