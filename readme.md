@@ -84,7 +84,7 @@ What do you see in the data above?
 - fields may include other documents and arrays of documents
 - a document is analogous to rows in a table
 
-[Documentation Here] (https://docs.mongodb.com/manual/introduction/)
+[Documentation Here](https://docs.mongodb.com/manual/introduction/)
 
 ### More complicated example of a `Restaurant` document:
 
