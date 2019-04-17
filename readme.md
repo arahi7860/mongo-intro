@@ -16,7 +16,7 @@ Why use a database at all?
 
 What's a major shortcoming of our applications right now, in terms of user experience?
 
-When we quit or reload the page, any data / progress is lost! Right now, we can only store
+> When we quit or reload the page, any data / progress is lost! Right now, we can only store
 information in memory, which is wiped when we quit out of a program. We
 need a way to fix this.
 
