@@ -23,6 +23,7 @@ need a way to fix this.
 
 </details>
 
+
 Enter databases...
 
 ## Databases (15 minutes / 0:15)
@@ -36,7 +37,7 @@ won't be lost (unless the server catches on fire).
 
 **Consistency**: Databases can enforce rules regarding consistency of data, especially when handling simultaneous requests to update information.
 
-**Scalability**: Databases can handle lots of requests per second, and many DBs have ways to scale to massive loads by replicating / syncing information across multiple DBs.
+**Scalability**: Databases can handle lots of requests per second, and many DBs have ways to scale to massive page loads by replicating / syncing information across multiple DBs.
 
 **Querying**: DBs make it easy to search, sort, filter and combine related data using a **Query Language**.
 
@@ -124,7 +125,7 @@ What do you see in the data above?
 MongoDB stores documents in collections.
 
 - collections are analogous to tables in relational databases
-- does **NOT** require its documents to have the same schema
+- does **NOT** require its documents to have the same schema, or structure
 - each document stored in a collection must have a unique `_id` field that acts as a primary key
 
 Great, now that we have a high level understanding of what Mongo is and what purpose it serves, let's look at how to use it!
@@ -192,7 +193,42 @@ $ mongod
 
 You should see:
 
-`a bunch of output but with the prompt hanging`
+```bash
+$ mongod
+
+2019-04-22T10:08:30.358-0400 I CONTROL  [initandlisten] MongoDB starting : pid=21047 port=27017 dbpath=/data/db 64-bit host=Erins-MacBook-Pro.local
+2019-04-22T10:08:30.358-0400 I CONTROL  [initandlisten] db version v3.6.5
+2019-04-22T10:08:30.358-0400 I CONTROL  [initandlisten] git version: a20ecd3e3a174162052ff99913bc2ca9a839d618
+2019-04-22T10:08:30.358-0400 I CONTROL  [initandlisten] OpenSSL version: OpenSSL 1.0.2q  20 Nov 2018
+2019-04-22T10:08:30.358-0400 I CONTROL  [initandlisten] allocator: system
+2019-04-22T10:08:30.358-0400 I CONTROL  [initandlisten] modules: none
+2019-04-22T10:08:30.358-0400 I CONTROL  [initandlisten] build environment:
+2019-04-22T10:08:30.358-0400 I CONTROL  [initandlisten]     distarch: x86_64
+2019-04-22T10:08:30.358-0400 I CONTROL  [initandlisten]     target_arch: x86_64
+2019-04-22T10:08:30.358-0400 I CONTROL  [initandlisten] options: {}
+2019-04-22T10:08:30.359-0400 I -        [initandlisten] Detected data files in /data/db created by the 'wiredTiger' storage engine, so setting the active storage engine to 'wiredTiger'.
+2019-04-22T10:08:30.359-0400 I STORAGE  [initandlisten] wiredtiger_open config: create,cache_size=3584M,session_max=20000,eviction=(threads_min=4,threads_max=4),config_base=false,statistics=(fast),cache_cursors=false,log=(enabled=true,archive=true,path=journal,compressor=snappy),file_manager=(close_idle_time=100000),statistics_log=(wait=0),verbose=(recovery_progress),
+2019-04-22T10:08:31.015-0400 I STORAGE  [initandlisten] WiredTiger message [1555942111:15624][21047:0x7fffaa2c0380], txn-recover: Main recovery loop: starting at 53/8448
+2019-04-22T10:08:31.092-0400 I STORAGE  [initandlisten] WiredTiger message [1555942111:92557][21047:0x7fffaa2c0380], txn-recover: Recovering log 53 through 54
+2019-04-22T10:08:31.147-0400 I STORAGE  [initandlisten] WiredTiger message [1555942111:147241][21047:0x7fffaa2c0380], txn-recover: Recovering log 54 through 54
+2019-04-22T10:08:31.185-0400 I STORAGE  [initandlisten] WiredTiger message [1555942111:185575][21047:0x7fffaa2c0380], txn-recover: Set global recovery timestamp: 0
+2019-04-22T10:08:31.400-0400 I CONTROL  [initandlisten] 
+2019-04-22T10:08:31.400-0400 I CONTROL  [initandlisten] ** WARNING: Access control is not enabled for the database.
+2019-04-22T10:08:31.401-0400 I CONTROL  [initandlisten] **          Read and write access to data and configuration is unrestricted.
+2019-04-22T10:08:31.401-0400 I CONTROL  [initandlisten] 
+2019-04-22T10:08:31.401-0400 I CONTROL  [initandlisten] ** WARNING: This server is bound to localhost.
+2019-04-22T10:08:31.401-0400 I CONTROL  [initandlisten] **          Remote systems will be unable to connect to this server. 
+2019-04-22T10:08:31.401-0400 I CONTROL  [initandlisten] **          Start the server with --bind_ip <address> to specify which IP 
+2019-04-22T10:08:31.401-0400 I CONTROL  [initandlisten] **          addresses it should serve responses from, or with --bind_ip_all to
+2019-04-22T10:08:31.401-0400 I CONTROL  [initandlisten] **          bind to all interfaces. If this behavior is desired, start the
+2019-04-22T10:08:31.401-0400 I CONTROL  [initandlisten] **          server with --bind_ip 127.0.0.1 to disable this warning.
+2019-04-22T10:08:31.401-0400 I CONTROL  [initandlisten] 
+2019-04-22T10:08:31.401-0400 I CONTROL  [initandlisten] 
+2019-04-22T10:08:31.401-0400 I CONTROL  [initandlisten] ** WARNING: soft rlimits too low. Number of files is 256, should be at least 1000
+2019-04-22T10:08:31.454-0400 I FTDC     [initandlisten] Initializing full-time diagnostic data capture with directory '/data/db/diagnostic.data'
+2019-04-22T10:08:31.456-0400 I NETWORK  [initandlisten] waiting for connections on port 27017
+```
+
 > This is good news, `mongod` just starts up a mongo server locally. **NOTE**: you need this running in order to use the mongo cli
 
 ### More info?
@@ -298,7 +334,7 @@ our database that our db will show up in `show dbs`.
       "name": "Cookies Corner",
       "address" : {
          "street" : "1970 2nd St NW",
-         "zipcode" : 20001,
+         "zipcode" : 20001
       },
       "yelp": "http://www.yelp.com/biz/cookies-corner-washington"
    })
