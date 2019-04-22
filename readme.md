@@ -535,7 +535,7 @@ Take time to think about and execute the appropriate commands so that you:
 
 ```js
 > db.restaurants.update(
-  {"name": "Cookies Corner"},
+  {"name": "Haikan"},
   { $set: { state: "DC" }}
 )
 ```
