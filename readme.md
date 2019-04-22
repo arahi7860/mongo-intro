@@ -191,7 +191,7 @@ In a new tab in Terminal:
 $ mongod
 ```
 
-You should see:
+You should see a bunch of output with the prompt hanging:
 
 ```bash
 $ mongod
@@ -331,12 +331,12 @@ our database that our db will show up in `show dbs`.
 ``` json
 > db.restaurants.insert(
    {
-      "name": "Cookies Corner",
+      "name": "Haikan",
       "address" : {
-         "street" : "1970 2nd St NW",
+         "street" : "805 V Street NW",
          "zipcode" : 20001
       },
-      "yelp": "http://www.yelp.com/biz/cookies-corner-washington"
+      "cuisine": "Ramen"
    })
 ```
 
@@ -365,7 +365,7 @@ Now type:
 Returns documents with the following fields:
 - `name`
 - `address`
-- `yelp`
+- `cuisine`
 
 **Q**. What is surprising/unexpected?
 
@@ -424,42 +424,42 @@ Let's recreate the steps together:
 db.restaurants.remove({});
 db.restaurants.insert([
   {
-    "name": "Cookies Corner",
-    "address": {
-      "street" : "1970 2nd St NW",
+    "name": "Haikan",
+    "address" : {
+      "street" : "805 V Street NW",
       "zipcode" : 20001
     },
-    "yelp": "http://www.yelp.com/biz/cookies-corner-washington"
+    "cuisine": "Ramen"
   },
   {
-    "name": "The Blind Dog Cafe",
+    "name": "Taqueria Habanero",
     "address": {
-      "street": "944 Florida Ave",
-      "zipcode": 20001
+      "street": "4710 14th Street NW",
+      "zipcode": 20010
     },
-    "yelp": "http://www.yelp.com/biz/the-blind-dog-cafe-washington-2?osq=cookies"
+    "cuisine": "Mexican"
   },
   {
-    "name": "Birch & Barley",
+    "name": "Chicken & Whiskey",
     "address": {
-      "street": "1337 14th St NW",
+      "street": "1738 14th Street NW",
+      "zipcode": 20009
+    },
+    "cuisine": "Peruvian"
+  },
+  {
+    "name": "The Coupe",
+    "address": {
+      "street": "3415 11th Street NW",
+      "zipcode": 20010
+    },
+    "cuisine": "American"
+  },
+  {
+    "name": "Da Hong Pao",
+    "address": {
+      "street": "1409 14th Street NW",
       "zipcode": 20005
-    },
-    "yelp": "http://www.yelp.com/biz/birch-and-barley-washington?osq=Restaurants+cookies"
-  },
-  {
-    "name": "Captain Cookie and the Milk Man",
-    "address": {
-      "street": "Foggy Bottom",
-      "zipcode": 20036
-    },
-    "yelp": "http://www.yelp.com/biz/captain-cookie-and-the-milk-man-washington-5"
-  },
-  {
-    "name": "J's Cookies",
-    "address": {
-      "street": "1700 N Moore St",
-      "zipcode": 22209
     }
   }
 ])
@@ -467,7 +467,7 @@ db.restaurants.insert([
 > db.restaurants.count()
 ```
 
-> Note that there's no `yelp` key in the last record. Does that matter?
+> Note that there's no `cuisine` key in the last record. Does that matter?
 
 ## [Primary key](http://docs.mongodb.org/manual/reference/glossary/#term-primary-key) (5 min / 1:25)
 
@@ -481,7 +481,7 @@ db.restaurants.insert([
 
 Breaking down the anatomy of a typical query with Mongo:
 
-    collection + operation + modification = results
+    db + collection + operation + modification = results
 
 In order to find all restaurants:
 ```js
@@ -495,7 +495,7 @@ In order to find all restaurants:
 We can add conditions to our query to target documents based on matching key-value pairs:
 
 ```js
-> db.restaurants.find({name: "Cookies Corner"});
+> db.restaurants.find({name: "Haikan"});
 > db.restaurants.find({"address.zipcode": 20001});
 ```
 
