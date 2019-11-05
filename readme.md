@@ -20,8 +20,6 @@ By the end of this, developers should be able to:
 * Explain the use cases of a database, specifically non-relational databases
 * Setup a local MongoDB server
 * Define the key terms document and collection in the context of MongoDB
-* Perform CRUD on documents in a collection using the Mongo CLI
-* Build a simple node CLI to query a MongoDB collection
 
 ## Databases (15 minutes / 0:15)
 
