@@ -21,7 +21,7 @@ By the end of this, developers should be able to:
 * Setup a local MongoDB server
 * Define the key terms document and collection in the context of MongoDB
 
-## Databases (15 minutes / 0:15)
+## Databases (10 minutes / 0:10)
 
 There are many ways to store data on a computer (e.g., writing to a text file,
 a binary file) but databases offer a number of advantages:
@@ -80,7 +80,7 @@ While this is a bit technical, it's worth clarifying some terminology...
 * **Database Management System**: The software that lets a user interact (query) the data in a database. Examples are MongoDB, PostgreSQL, MySQL, etc.
 * **Database CLI**: A tool offered by most DBMSs that allows us to interact with and query your database from the command line. For MongoDB, we'll use `mongo`. We'll be mostly working in the CLI today.
 
-## Document Database (10 min / 0:25)
+## Document Database (10 min / 0:20)
 
 ### A basic example of a `Person` document:
 
@@ -140,7 +140,7 @@ What do you see in the data above?
 
 What do you see in the data above?
 
-## Collections (5 min / 0:30)
+## Collections (5 min / 0:25)
 
 MongoDB stores documents in collections.
 
@@ -151,7 +151,7 @@ MongoDB stores documents in collections.
 Great, now that we have a high level understanding of what Mongo is and what
 purpose it serves, let's look at how to use it!
 
-## Installation / Starting (10 min / 0:40)
+## Installation / Starting (5 min / 0:30)
 
 Check to make sure MongoDB is installed by running the following command in
 a terminal window:
@@ -209,7 +209,7 @@ If you already have Mongo installed, skip to the **Mongo Shell** section.
 
 > [Linux Instructions on the mongodb website](https://docs.mongodb.org/manual/tutorial/install-mongodb-on-ubuntu/)
 
-## Mongo shell (10 min / 0:50)
+## Mongo shell (10 min / 0:40)
 
 ### Start Mongo:
 
@@ -316,7 +316,7 @@ Also:
 * `<up-arrow>` and the `<down-arrow>` for history.
 </details>
 
-## Review: Mongo's Key Advantages (10 min / 1:10)
+## Review: Mongo's Key Advantages (5 min / 0:45)
 
 * Usability
 * High Performance
