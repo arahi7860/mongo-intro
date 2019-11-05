@@ -316,7 +316,7 @@ Also:
 * `<up-arrow>` and the `<down-arrow>` for history.
 </details>
 
-## Closing: Review Mongo's Key Advantages (15 min / 2:15)
+## Review: Mongo's Key Advantages (10 min / 1:10)
 
 * Usability
 * High Performance
