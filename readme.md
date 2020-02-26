@@ -165,13 +165,11 @@ If you already have it installed you should see output like this...
 ```sh
 $ mongo --version
 
-MongoDB shell version v3.6.6
-git version: 6405d65b1d6432e138b44c13085d0c2fe235d6bd
-OpenSSL version: OpenSSL 1.0.2n  7 Dec 2017
-allocator: tcmalloc
+MongoDB shell version v4.2.3
+git version: 6874650b362138df74be53d366bbefc321ea32d4
+allocator: system
 modules: none
 build environment:
-    distmod: ubuntu1604
     distarch: x86_64
     target_arch: x86_64
 ```
@@ -187,25 +185,17 @@ If you already have Mongo installed, skip to the **Mongo Shell** section.
 
 **Mac OS X:**
 
-    1. Install mongodb with brew
+1. Add the custom tap in a MacOS terminal session using:
 
-        ```bash
-        brew install mongodb
-        ```
+```bash
+$ brew tap mongodb/brew
+```
 
-    2. Create the folder mongo will be using to store your databases
+2. Install MongoDB Community Edition:
 
-        ```bash
-        sudo mkdir -p /data/db
-        ```
-
-    3. Change permission so your user account owns this folder you just created
-
-        ```bash
-        sudo chown -R $(whoami) /data/db
-        ```
-
-    > Type these commands exactly as displayed, you don't need to substitute anything.
+```bash
+$ brew install mongodb-community@4.2
+```
 
 > [Linux Instructions on the mongodb website](https://docs.mongodb.org/manual/tutorial/install-mongodb-on-ubuntu/)
 
@@ -216,55 +206,20 @@ If you already have Mongo installed, skip to the **Mongo Shell** section.
 In a new tab in Terminal, run the following:
 
 ```
-$ mongod
+$ brew services start mongodb-community@4.2
 ```
 
-You should see a bunch of output with the prompt hanging:
+You should see the following output:
 
 ```bash
-$ mongod
+$ brew services start mongodb-community@4.2
 
-2019-04-22T10:08:30.358-0400 I CONTROL  [initandlisten] MongoDB starting : pid=21047 port=27017 dbpath=/data/db 64-bit host=Erins-MacBook-Pro.local
-2019-04-22T10:08:30.358-0400 I CONTROL  [initandlisten] db version v3.6.5
-2019-04-22T10:08:30.358-0400 I CONTROL  [initandlisten] git version: a20ecd3e3a174162052ff99913bc2ca9a839d618
-2019-04-22T10:08:30.358-0400 I CONTROL  [initandlisten] OpenSSL version: OpenSSL 1.0.2q  20 Nov 2018
-2019-04-22T10:08:30.358-0400 I CONTROL  [initandlisten] allocator: system
-2019-04-22T10:08:30.358-0400 I CONTROL  [initandlisten] modules: none
-2019-04-22T10:08:30.358-0400 I CONTROL  [initandlisten] build environment:
-2019-04-22T10:08:30.358-0400 I CONTROL  [initandlisten]     distarch: x86_64
-2019-04-22T10:08:30.358-0400 I CONTROL  [initandlisten]     target_arch: x86_64
-2019-04-22T10:08:30.358-0400 I CONTROL  [initandlisten] options: {}
-2019-04-22T10:08:30.359-0400 I -        [initandlisten] Detected data files in /data/db created by the 'wiredTiger' storage engine, so setting the active storage engine to 'wiredTiger'.
-2019-04-22T10:08:30.359-0400 I STORAGE  [initandlisten] wiredtiger_open config: create,cache_size=3584M,session_max=20000,eviction=(threads_min=4,threads_max=4),config_base=false,statistics=(fast),cache_cursors=false,log=(enabled=true,archive=true,path=journal,compressor=snappy),file_manager=(close_idle_time=100000),statistics_log=(wait=0),verbose=(recovery_progress),
-2019-04-22T10:08:31.015-0400 I STORAGE  [initandlisten] WiredTiger message [1555942111:15624][21047:0x7fffaa2c0380], txn-recover: Main recovery loop: starting at 53/8448
-2019-04-22T10:08:31.092-0400 I STORAGE  [initandlisten] WiredTiger message [1555942111:92557][21047:0x7fffaa2c0380], txn-recover: Recovering log 53 through 54
-2019-04-22T10:08:31.147-0400 I STORAGE  [initandlisten] WiredTiger message [1555942111:147241][21047:0x7fffaa2c0380], txn-recover: Recovering log 54 through 54
-2019-04-22T10:08:31.185-0400 I STORAGE  [initandlisten] WiredTiger message [1555942111:185575][21047:0x7fffaa2c0380], txn-recover: Set global recovery timestamp: 0
-2019-04-22T10:08:31.400-0400 I CONTROL  [initandlisten] 
-2019-04-22T10:08:31.400-0400 I CONTROL  [initandlisten] ** WARNING: Access control is not enabled for the database.
-2019-04-22T10:08:31.401-0400 I CONTROL  [initandlisten] **          Read and write access to data and configuration is unrestricted.
-2019-04-22T10:08:31.401-0400 I CONTROL  [initandlisten] 
-2019-04-22T10:08:31.401-0400 I CONTROL  [initandlisten] ** WARNING: This server is bound to localhost.
-2019-04-22T10:08:31.401-0400 I CONTROL  [initandlisten] **          Remote systems will be unable to connect to this server. 
-2019-04-22T10:08:31.401-0400 I CONTROL  [initandlisten] **          Start the server with --bind_ip <address> to specify which IP 
-2019-04-22T10:08:31.401-0400 I CONTROL  [initandlisten] **          addresses it should serve responses from, or with --bind_ip_all to
-2019-04-22T10:08:31.401-0400 I CONTROL  [initandlisten] **          bind to all interfaces. If this behavior is desired, start the
-2019-04-22T10:08:31.401-0400 I CONTROL  [initandlisten] **          server with --bind_ip 127.0.0.1 to disable this warning.
-2019-04-22T10:08:31.401-0400 I CONTROL  [initandlisten] 
-2019-04-22T10:08:31.401-0400 I CONTROL  [initandlisten] 
-2019-04-22T10:08:31.401-0400 I CONTROL  [initandlisten] ** WARNING: soft rlimits too low. Number of files is 256, should be at least 1000
-2019-04-22T10:08:31.454-0400 I FTDC     [initandlisten] Initializing full-time diagnostic data capture with directory '/data/db/diagnostic.data'
-2019-04-22T10:08:31.456-0400 I NETWORK  [initandlisten] waiting for connections on port 27017
+==> Successfully started `mongodb-community` (label: homebrew.mxcl.mongodb-commu
 ```
 
-> This is good news, `mongod` just starts up a mongo server locally. **NOTE**:
-> you need this running in order to use the mongo cli
+> This is good news, the command just starts up a mongo server locally. **NOTE**:
+> you need this running in order to use the mongo cli, but you can keep it running in the background.
 
-### Want More Info?
-
-```
-$ brew info mongo
-```
 
 ### Start The Shell
 
@@ -279,8 +234,27 @@ $ mongo
 You should see:
 
 ```
-MongoDB shell version: 3.x.x
-connecting to: test
+MongoDB shell version v4.2.3
+connecting to: mongodb://127.0.0.1:27017/?compressors=disabled&gssapiServiceName=mongodb
+Implicit session: session { "id" : UUID("b4207c16-134c-4474-99c6-875f37d9080d") }
+MongoDB server version: 4.2.3
+Server has startup warnings: 
+2020-02-26T10:35:41.523-0500 I  CONTROL  [initandlisten] 
+2020-02-26T10:35:41.523-0500 I  CONTROL  [initandlisten] ** WARNING: Access control is not enabled for the database.
+2020-02-26T10:35:41.523-0500 I  CONTROL  [initandlisten] **          Read and write access to data and configuration is unrestricted.
+2020-02-26T10:35:41.523-0500 I  CONTROL  [initandlisten] 
+---
+Enable MongoDB's free cloud-based monitoring service, which will then receive and display
+metrics about your deployment (disk utilization, CPU, operation statistics, etc).
+
+The monitoring data will be available on a MongoDB website with a unique URL accessible to you
+and anyone you share the URL with. MongoDB may use this information to make product
+improvements and to suggest MongoDB products and deployment options to you.
+
+To enable free monitoring, run the following command: db.enableFreeMonitoring()
+To permanently disable this reminder, run the following command: db.disableFreeMonitoring()
+---
+
 >
 ```
 
