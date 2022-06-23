@@ -100,8 +100,9 @@ What do you see in the data above?
 **A record in MongoDB is a called document.**
 
 * A data structure composed of pairs or fields (keys) and values
-  * Similar to JSON objects ([JavaScript Object Notation](https://www.mongodb.com/json-and-bson)
-  * Stored as BSON [(binary-encoded JSON)](http://bsonspec.org/ )
+  * Similar to JSON objects ([JavaScript Object
+      Notation](https://www.mongodb.com/json-and-bson)) 
+  * Stored as BSON ([binary-encoded JSON](http://bsonspec.org/ ))
 * A document can support all data types - numbers, strings, booleans, even arrays and other documents (objects)
 * Fields may include other documents and arrays of documents
 * A document is analogous to a row in a table
@@ -146,7 +147,7 @@ MongoDB stores documents in collections.
 
 * Collections are analogous to tables in relational databases
 * Does **NOT** require its documents to have the same schema or structure
-* Each document stored in a collection must have a unique `_id` field that acts as a primary key
+* Each document stored in a collection must have a unique `_id` field that acts as a primary key (MongoDB will generate that `_id` for you)
 
 Great, now that we have a high level understanding of what Mongo is and what
 purpose it serves, let's look at how to use it!
