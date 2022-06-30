@@ -166,7 +166,7 @@ If you already have it installed you should see output like this...
 ```sh
 $ mongo --version
 
-MongoDB shell version v4.2.3
+MongoDB shell version v5.0.0
 git version: 6874650b362138df74be53d366bbefc321ea32d4
 allocator: system
 modules: none
@@ -195,7 +195,7 @@ $ brew tap mongodb/brew
 2. Install MongoDB Community Edition:
 
 ```bash
-$ brew install mongodb-community@4.2
+$ brew install mongodb-community@5.0
 ```
 
 > [Linux Instructions on the mongodb website](https://docs.mongodb.org/manual/tutorial/install-mongodb-on-ubuntu/)
@@ -235,10 +235,10 @@ $ mongo
 You should see:
 
 ```
-MongoDB shell version v4.2.3
+MongoDB shell version v5.0.0
 connecting to: mongodb://127.0.0.1:27017/?compressors=disabled&gssapiServiceName=mongodb
 Implicit session: session { "id" : UUID("b4207c16-134c-4474-99c6-875f37d9080d") }
-MongoDB server version: 4.2.3
+MongoDB server version: 5.0.0
 Server has startup warnings: 
 2020-02-26T10:35:41.523-0500 I  CONTROL  [initandlisten] 
 2020-02-26T10:35:41.523-0500 I  CONTROL  [initandlisten] ** WARNING: Access control is not enabled for the database.
