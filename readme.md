@@ -207,13 +207,13 @@ $ brew install mongodb-community@5.0
 In a new tab in Terminal, run the following:
 
 ```
-$ brew services start mongodb-community@4.2
+$ brew services start mongodb-community@5.0
 ```
 
 You should see the following output:
 
 ```bash
-$ brew services start mongodb-community@4.2
+$ brew services start mongodb-community@5.0
 
 ==> Successfully started `mongodb-community` (label: homebrew.mxcl.mongodb-commu
 ```
